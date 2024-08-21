@@ -57,6 +57,22 @@ app.get('/api/cards', (req,res)=>{
     })
 })
 
+app.get('/api/edit', (req,res)=>{
+    const query = 'SELECT word,definition FROM cards';
+
+    db.query(query, (err,results)=>{
+        if(err){
+            console.log("Error executing query");
+            res.json("Error executing query!")
+            res.status(500).send("Database Error");
+            return;
+        }
+
+        res.json(results)
+        
+    })
+})
+
 app.listen(port, ()=>{
-    console.log("Server is running!")
+    console.log("Server is running on 3001!")
 })
